@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "github-release-notes-cli"
+version = "0.1.0"
+description = "CLI to fetch GitHub release notes for a version or version range"
+requires-python = ">=3.10"
+authors = [
+  { name = "Release Notes Bot" }
+]
+
+[project.scripts]
+github-release-notes = "github_release_notes_cli:main"
+
+[tool.setuptools]
+py-modules = ["github_release_notes_cli"]
