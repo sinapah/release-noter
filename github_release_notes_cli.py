@@ -12,11 +12,11 @@ Examples:
   python github_release_notes_cli.py https://github.com/owner/repo/releases 0.9.0 1.2.3
 
 Some TODOs:
-1. Add status message as the request is being processed
-2. Add --help commands
-3. Restructure as a UV managed binary project
-4. Write unit tests
-5. The result should be MD so we can click into the issue number links
+1. Add an optional --verbose mode with status/progress messages.
+2. Add unit tests for version parsing and range selection.
+3. Add integration tests against a mocked GitHub API response.
+4. Add optional GitHub token support to reduce API rate-limit issues.
+5. Document and standardize the `uv tool run --from ... github-release-notes` UX.
 """
 
 from __future__ import annotations

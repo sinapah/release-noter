@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "github-release-notes-cli"
+name = "github-release-notes"
 version = "0.1.0"
 description = "CLI to fetch GitHub release notes for a version or version range"
 requires-python = ">=3.10"
