@@ -32,6 +32,22 @@ After installation, the command is available as:
 github-release-notes --help
 ```
 
+## Run with `uv tool run` (no local install)
+
+If you want to run directly from Git without installing into your environment:
+
+```bash
+uv tool run --from git+https://github.com/<owner>/github-release-notes github-release-notes --help
+```
+
+For generating notes:
+
+```bash
+uv tool run --from git+https://github.com/<owner>/github-release-notes github-release-notes https://github.com/OWNER/REPO/releases 1.2.3
+```
+
+Note: the package name is `github-release-notes-cli`, but the executable is `github-release-notes`.
+
 ## Usage
 
 ### Single release
