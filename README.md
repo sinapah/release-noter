@@ -37,13 +37,13 @@ github-release-notes --help
 If you want to run directly from Git without installing into your environment:
 
 ```bash
-uv tool run --from git+https://github.com/<owner>/github-release-notes github-release-notes --help
+uv tool run git+https://github.com/sinapah/github-release-notes github-release-notes --help
 ```
 
 For generating notes:
 
 ```bash
-uv tool run --from git+https://github.com/<owner>/github-release-notes github-release-notes https://github.com/OWNER/REPO/releases 1.2.3
+uv tool run git+https://github.com/sinapah/github-release-notes github-release-notes https://github.com/OWNER/REPO/releases 1.2.3
 ```
 
 Note: the package name is `github-release-notes-cli`, but the executable is `github-release-notes`.
@@ -74,6 +74,6 @@ If `-o/--output-dir` is omitted, output is written to stdout.
 
 ## Notes
 
-- The URL can be a project URL or releases URL (for example `https://github.com/OWNER/REPO` or `https://github.com/OWNER/REPO/releases`).
+- The URL can be a project URL or releases URL (for example `https://github.com/prometheus/prometheus` or `https://github.com/prometheus/prometheus/releases`).
 - Range bounds must be stable semver-like versions (e.g. `1.2.3`).
 - GitHub API rate limits may apply for unauthenticated requests.
