@@ -7,7 +7,7 @@ name = "release-noter"
 version = "0.1.0"
 description = "CLI to fetch GitHub release notes for a version or version range"
 readme = "README.md"
-license = { text = "MIT" }
+license = { file = "LICENSE" }
 requires-python = ">=3.10"
 dependencies = []
 keywords = ["github", "release-notes", "cli", "changelog"]
@@ -18,7 +18,7 @@ classifiers = [
   "Development Status :: 3 - Alpha",
   "Environment :: Console",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
+  "License :: OSI Approved :: Apache Software License",
   "Programming Language :: Python :: 3",
 ]
 
