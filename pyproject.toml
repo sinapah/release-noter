@@ -3,16 +3,31 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "github-release-notes"
+name = "release-noter"
 version = "0.1.0"
 description = "CLI to fetch GitHub release notes for a version or version range"
+readme = "README.md"
+license = { text = "MIT" }
 requires-python = ">=3.10"
+dependencies = []
+keywords = ["github", "release-notes", "cli", "changelog"]
 authors = [
-  { name = "Release Notes Bot" }
+  { name = "Sina P" }
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
 ]
 
+[project.urls]
+Homepage = "https://github.com/sinapah/release-noter"
+"Bug Tracker" = "https://github.com/sinapah/release-noter/issues"
+
 [project.scripts]
-github-release-notes = "github_release_notes_cli:main"
+release-noter = "release_noter:main"
 
 [tool.setuptools]
-py-modules = ["github_release_notes_cli"]
+py-modules = ["release_noter"]

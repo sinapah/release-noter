@@ -1,4 +1,4 @@
-# GitHub Release Notes CLI
+# release-noter
 
 A small Python CLI to fetch GitHub release notes for:
 
@@ -29,7 +29,7 @@ pip install -e .
 After installation, the command is available as:
 
 ```bash
-github-release-notes --help
+release-noter --help
 ```
 
 ## Run with `uv tool run` (no local install)
@@ -37,23 +37,21 @@ github-release-notes --help
 If you want to run directly from Git without installing into your environment:
 
 ```bash
-uv tool run git+https://github.com/sinapah/github-release-notes github-release-notes --help
+uv tool run --from git+https://github.com/sinapah/release_noter release-noter --help
 ```
 
 For generating notes:
 
 ```bash
-uv tool run git+https://github.com/sinapah/github-release-notes github-release-notes https://github.com/OWNER/REPO/releases 1.2.3
+uv tool run --from git+https://github.com/sinapah/release_noter release-noter https://github.com/OWNER/REPO/releases 1.2.3
 ```
-
-Note: the package name is `github-release-notes-cli`, but the executable is `github-release-notes`.
 
 ## Usage
 
 ### Single release
 
 ```bash
-github-release-notes https://github.com/OWNER/REPO/releases 1.2.3
+release-noter https://github.com/OWNER/REPO/releases 1.2.3
 ```
 
 If an exact match is not found, the tool also tries with/without the `v` prefix (for example `1.2.3` and `v1.2.3`).
@@ -61,13 +59,13 @@ If an exact match is not found, the tool also tries with/without the `v` prefix 
 ### Version range (inclusive)
 
 ```bash
-github-release-notes https://github.com/OWNER/REPO/releases 0.9.0 1.2.3
+release-noter https://github.com/OWNER/REPO/releases 0.9.0 1.2.3
 ```
 
 ### Write output to folder
 
 ```bash
-github-release-notes https://github.com/OWNER/REPO/releases 1.2.3 -o ./notes
+release-noter https://github.com/OWNER/REPO/releases 1.2.3 -o ./notes
 ```
 
 If `-o/--output-dir` is omitted, output is written to stdout.
