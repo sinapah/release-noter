@@ -37,13 +37,13 @@ release-noter --help
 If you want to run directly from Git without installing into your environment:
 
 ```bash
-uv tool run --from git+https://github.com/sinapah/github-release-notes release-noter --help
+uv tool run --from git+https://github.com/sinapah/release_noter release-noter --help
 ```
 
 For generating notes:
 
 ```bash
-uv tool run --from git+https://github.com/sinapah/github-release-notes release-noter https://github.com/OWNER/REPO/releases 1.2.3
+uv tool run --from git+https://github.com/sinapah/release_noter release-noter https://github.com/OWNER/REPO/releases 1.2.3
 ```
 
 ## Usage

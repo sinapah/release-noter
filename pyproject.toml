@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "release-noter"       # confirm not taken on PyPI
+name = "release-noter"
 version = "0.1.0"
 description = "CLI to fetch GitHub release notes for a version or version range"
 readme = "README.md"
@@ -12,7 +12,7 @@ requires-python = ">=3.10"
 dependencies = []
 keywords = ["github", "release-notes", "cli", "changelog"]
 authors = [
-  { name = "Your Name", email = "you@example.com" }
+  { name = "Sina P" }
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -23,8 +23,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/sinapah/github-release-notes"
-"Bug Tracker" = "https://github.com/sinapah/github-release-notes/issues"
+Homepage = "https://github.com/sinapah/release-noter"
+"Bug Tracker" = "https://github.com/sinapah/release-noter/issues"
 
 [project.scripts]
 release-noter = "release_noter:main"
