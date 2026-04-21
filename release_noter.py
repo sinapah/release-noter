@@ -110,17 +110,6 @@ def normalize_v_prefix(version: str) -> str:
     return version[1:] if version.startswith("v") else version
 
 
-def find_exact_release(releases: Iterable[Release], version: str) -> Release | None:
-    candidates = {version, (f"v{version}" if not version.startswith("v") else version[1:])}
-
-    for rel in releases:
-        if rel.prerelease or rel.draft:
-            continue
-        if rel.tag_name in candidates:
-            return rel
-    return None
-
-
 def parse_semver_like(version: str) -> tuple[int, ...] | None:
     """Parse a semver-like version into a numeric tuple.
 
@@ -139,6 +128,41 @@ def parse_semver_like(version: str) -> tuple[int, ...] | None:
     return tuple(int(x) for x in v.split("."))
 
 
+def extract_stable_semver_like(version: str) -> tuple[int, ...] | None:
+    """Extract a trailing stable semver-like version from a tag or name.
+
+    Accepts plain versions like 1.2.3 and prefixed tags like mimir-1.2.3
+    or release/v1.2.3. Rejects pre-releases such as mimir-1.2.3-rc.1.
+    """
+    raw = version.strip()
+
+    direct = parse_semver_like(raw)
+    if direct is not None:
+        return direct
+
+    match = re.search(r"(?:^|[^0-9A-Za-z])v?(\d+(?:\.\d+)*)(?:\+[^\s-]+)?$", raw)
+    if match is None:
+        return None
+
+    return parse_semver_like(match.group(1))
+
+
+def find_exact_release(releases: Iterable[Release], version: str) -> Release | None:
+    candidates = {version, (f"v{version}" if not version.startswith("v") else version[1:])}
+    target_version = extract_stable_semver_like(version)
+
+    for rel in releases:
+        if rel.prerelease or rel.draft:
+            continue
+        if rel.tag_name in candidates:
+            return rel
+        if rel.name in candidates:
+            return rel
+        if target_version is not None and extract_stable_semver_like(rel.tag_name) == target_version:
+            return rel
+    return None
+
+
 def pad_tuple(t: tuple[int, ...], length: int) -> tuple[int, ...]:
     if len(t) >= length:
         return t
@@ -155,8 +179,8 @@ def semver_in_range(v: tuple[int, ...], start: tuple[int, ...], end: tuple[int, 
 
 
 def select_releases_in_range(releases: Iterable[Release], start: str, end: str) -> list[Release]:
-    start_parsed = parse_semver_like(start)
-    end_parsed = parse_semver_like(end)
+    start_parsed = extract_stable_semver_like(start)
+    end_parsed = extract_stable_semver_like(end)
     if start_parsed is None or end_parsed is None:
         raise ValueError("Range bounds must be stable semver-like versions (e.g. 1.2.3)")
 
@@ -169,7 +193,7 @@ def select_releases_in_range(releases: Iterable[Release], start: str, end: str) 
         if rel.prerelease or rel.draft:
             continue
 
-        parsed = parse_semver_like(rel.tag_name)
+        parsed = extract_stable_semver_like(rel.tag_name)
         if parsed is None:
             continue
 

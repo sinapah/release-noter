@@ -54,13 +54,17 @@ uv tool run --from git+https://github.com/sinapah/release_noter release-noter ht
 release-noter https://github.com/OWNER/REPO/releases 1.2.3
 ```
 
-If an exact match is not found, the tool also tries with/without the `v` prefix (for example `1.2.3` and `v1.2.3`).
+If an exact match is not found, the tool also tries with/without the `v` prefix
+and can match stable semver suffixes in prefixed tags such as `mimir-1.2.3`.
 
 ### Version range (inclusive)
 
 ```bash
 release-noter https://github.com/OWNER/REPO/releases 0.9.0 1.2.3
 ```
+
+Range mode also supports repositories whose release tags include a prefix, such
+as `mimir-2.13.0`.
 
 ### Write output to folder
 
